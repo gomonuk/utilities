@@ -7,3 +7,4 @@ docker inspect CONTAINER_ID
 
 docker run --name postgres_for_cursor  -e POSTGRES_PASSWORD=secrect -e POSTGRES_USER=postgres -d postgres_with_python
 
+docker run --name my-memcache  --network host -m 15GB  -d memcached
