@@ -5,15 +5,11 @@ from multiprocessing.pool import ThreadPool
 
 import redis
 
-# r = redis.Redis(host='0.0.0.0', db=5)
-# a = r.keys()
-# print(r.hkeys("4ec"))
-for db_id in range(10):
-    r = redis.Redis(host='0.0.0.0', db=5+db_id)
-    print(db_id)
-    for i in range(1000_000):
-        a = hashlib.md5(str(i).encode('utf-8')).hexdigest()
-        r.hset(name=a[:5], key=a[5:], value=i)
+r = redis.Redis(host='0.0.0.0', db=0)
+
+for i in range(200_000_000):
+    a = hashlib.md5(str(i*20).encode('utf-8')).hexdigest()
+    r.hset(name=a[:4], key=a[4:], value=i)
 
 #
 # r.set('foo', 'bar')
